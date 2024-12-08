@@ -1,0 +1,8 @@
+<div class="min-h-screen flex flex-col md:flex-row w-full">
+    <div class="bg-slate-200 shadow-md border-r border-gray-200 md:w-[20em]">
+        <app-navbar [toggleSidebar]="toggleSidebar"></app-navbar>
+    </div>
+    <div class="flex-grow">
+        <router-outlet></router-outlet>
+    </div>
+</div>

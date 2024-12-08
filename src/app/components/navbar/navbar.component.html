@@ -1,0 +1,123 @@
+<nav class="bg-white shadow-md border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <!-- <div class="flex-shrink-0">
+          <img class="h-8 w-auto" src="assets/single-logo.jpg" alt="Logo">
+        </div> -->
+        
+        <div class="hide-small md:flex space-x-6">
+          <a href="#" class="text-gray-600 hover:text-blue-600 font-medium flex items-center">
+            <i class="fas fa-briefcase mr-2"></i> Event Management
+          </a>
+        </div>
+        
+        <div class="md:flex items-center space-x-4">
+            <ng-container *ngIf="isLoggedIn; else signInLink">
+              <div class="relative mr-4">
+                <app-notifications [notifications]="notifications"></app-notifications>
+                <!-- <span class="w-6 h-6 text-xs bg-red-400 rounded-full p-2 absolute -top-2 left-4 flex items-center justify-center">{{notificationsCount}}</span> -->
+              </div>
+              <div class="relative">
+                <button
+                  class="text-gray-600 hover:text-blue-600 font-medium flex p-6"
+                  (click)="toggleDropdown()"
+                >
+                    <div class="flex gap-2">
+                      <div  class="w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center text-white hover:text-blue-600">
+                          {{user_first}}
+                      </div>
+                      <div class="flex flex-col items-start text-xs font-medium">
+                          <span>{{username}}</span>
+                          <span>{{email}}</span>
+                      </div>
+                  </div>
+                </button>
+          
+                <div
+                  *ngIf="showDropdown"
+                  class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10"
+                >
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    (click)="goToProfile()"
+                  >
+                    View Profile
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    (click)="logout()"
+                  >
+                    Logout
+                  </a>
+                  <ng-container *ngIf="isAdmin;">
+                    <a
+                    href="/admin/dashboard"
+                    *ngIf="isAdmin;"
+                    class="block px-4 py-2 mb-2 text-sm text-gray-700 hover:bg-gray-100"
+                    (click)="toggleDropdown()"
+                  >
+                  Admin Controlles
+                  </a>
+                  </ng-container>
+                </div>
+              </div>
+            </ng-container>
+          
+            <ng-template #signInLink>
+              <button
+                (click)="goToSignIn()"
+                class="text-gray-600 hover:text-blue-600 font-medium flex items-center"
+              >
+                <i class="fas fa-sign-in mr-2"></i> Sign In
+              </button>
+            </ng-template>
+          </div>
+  
+        
+        <div class="md:hidden flex items-center">
+          <button class="text-gray-600 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-gray-300" (click)="toggleMobileMenu()">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
+        </div>
+
+      <div *ngIf="isMenuOpen" class="fixed inset-0 bg-gray-800 bg-opacity-50 z-20">
+        <div class="bg-white w-[40%] h-full pt-16 px-4 transition-transform transform ease-in-out"
+            [ngClass]="{'translate-y-0': isMenuOpen, 'translate-y-full': !isMenuOpen}">
+
+            <button
+            class="absolute top-4 right-4 text-gray-600 hover:text-blue-600"
+            (click)="toggleMobileMenu()"
+          >
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div class="flex flex-col gap-8">
+            <button class="text-gray-600 hover:text-blue-600 font-medium w-full flex items-center" (click)="goToSearch()">
+              <i class="fa-solid fa-magnifying-glass mr-2"></i> Search
+            </button>
+            <ng-container *ngIf="isAdmin;">
+              <a
+              href="/admin/dashboard"
+              *ngIf="isAdmin;"
+              class="block py-2 mb-2 text-sm text-gray-700 hover:bg-gray-100"
+              (click)="toggleDropdown()"
+            >
+            Admin Controlles
+            </a>
+            </ng-container>
+            <button (click)="logout()" class="text-gray-600 hover:text-blue-600 font-medium w-full flex items-center">
+              <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </nav>
+  

@@ -1,0 +1,101 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+      <h2 class="text-2xl font-bold text-center text-gray-800">
+        Sign Up
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        <span class="cursor-pointer text-blue-600 hover:underline" (click)="toggleMode()">
+          <a href="/login">or Sign In</a>
+        </span>
+      </p>
+      <div class="my-4 border-t border-gray-300"></div>
+  
+      <form (ngSubmit)="signUp()">
+         <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-700">Username</label>
+            <input
+              type="username"
+              id="username"
+              [(ngModel)]="registerPayload.username"
+              name="username"
+              placeholder="Enter your username"
+              class="mt-1 px-4 py-2 w-full border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              required
+            />
+          </div>
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            id="email"
+            [(ngModel)]="registerPayload.email"
+            name="email"
+            placeholder="Enter your email"
+            class="mt-1 px-4 py-2 w-full border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+          <input
+            type="phone"
+            id="phone"
+            [(ngModel)]="registerPayload.phoneNumber"
+            name="phone"
+            placeholder="Enter your phone"
+            class="mt-1 px-4 py-2 w-full border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+  
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input
+            type="password"
+            id="password"
+            [(ngModel)]="registerPayload.password"
+            name="password"
+            placeholder="Enter your password"
+            class="mt-1 px-4 py-2 w-full border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+            <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm password</label>
+            <input
+              type="password"
+              id="confirm_password"
+              [(ngModel)]="confirm_password"
+              name="confirm password"
+              placeholder="Enter your confirm password"
+              class="mt-1 px-4 py-2 w-full border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              required
+            />
+          </div>
+  
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:opacity-50"
+          [disabled]="isLoading"
+        >
+          {{ 'Sign Up' }}
+        </button>
+  
+        <div *ngIf="successMessage" class="mt-4 text-center text-green-600 text-sm">
+          {{ successMessage }}
+        </div>
+        <div *ngIf="errorMessage" class="mt-4 text-center text-red-600 text-sm">
+          {{ errorMessage }}
+        </div>
+      </form>
+  
+      <p class="mt-4 text-sm text-center text-gray-500">
+        By clicking on {{ isSignUp ? 'Sign Up' : 'Login' }}, I accept the
+        <a href="#" class="text-blue-600 hover:underline">Terms & Conditions</a> &
+        <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>.
+      </p>
+    </div>
+  </div>
+  

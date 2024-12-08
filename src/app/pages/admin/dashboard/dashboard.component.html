@@ -1,0 +1,54 @@
+<div class="p-6 bg-gray-100 min-h-screen">
+    <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+  
+    <div class="grid grid-cols-3 gap-6">
+      <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+        <h2 class="text-lg font-semibold">Total Events</h2>
+        <p class="text-3xl font-bold text-teal-600">{{ totalEvents }}</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+        <h2 class="text-lg font-semibold">Total Registrations</h2>
+        <p class="text-3xl font-bold text-purple-600">{{ totalRegistrations }}</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+        <h2 class="text-lg font-semibold">Event Categories</h2>
+        <p class="text-3xl font-bold text-blue-600">{{ totalCategories }}</p>
+      </div>
+      <!-- <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+        <h2 class="text-lg font-semibold">Event Locations</h2>
+        <p class="text-3xl font-bold text-red-600">{{ totalLocations }}</p>
+      </div> -->
+    </div>
+  
+    <div class="grid grid-cols-1 gap-6 mt-8">
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Recent Registrations</h2>
+        <ul>
+          <li
+            *ngFor="let registration of recentRegistrations"
+            class="flex justify-between border-b py-2"
+          >
+            <span>{{ registration.eventId.name }}</span>
+            <span class="text-gray-600">{{ registration.userId.username }}</span>
+          </li>
+        </ul>
+      </div>
+  
+      <!-- Event Distribution -->
+      <!-- <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Event Distribution</h2>
+        <canvas id="eventChart"></canvas>
+      </div> -->
+    </div>
+  
+    <!-- Calendar View -->
+    <!-- <div class="bg-white shadow-lg rounded-lg mt-8 p-6">
+      <h2 class="text-xl font-semibold mb-4">Event Calendar</h2>
+      <full-calendar
+        [plugins]="calendarPlugins"
+        [events]="calendarEvents"
+        [initialView]="'dayGridMonth'"
+      ></full-calendar>
+    </div> -->
+  </div>
+  

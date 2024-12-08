@@ -1,0 +1,61 @@
+<div class="relative">
+    <button (click)="openNotificationModal()" class="relative flex items-center">
+      <i class="fa fa-bell fa-2x text-gray-600"></i>
+      <span
+        *ngIf="notificationsCount"
+        class="absolute top-0 right-0 bg-red-500 text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center"
+      >
+        {{ notificationsCount }}
+      </span>
+    </button>
+  
+    <div *ngIf="isNotificationModelOpen" class="absolute top-12 right-0 z-50 w-80">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="bg-blue-500 text-white px-4 py-2 font-bold text-center">
+          Notifications
+        </div>
+  
+        <div class="max-h-96 overflow-y-auto">
+          <ng-container *ngIf="notifications; else noNotifications">
+            <div
+              *ngFor="let item of notifications"
+              class="flex items-start gap-3 px-4 py-3 border-b border-gray-200 hover:bg-gray-100"
+            >
+              <div class="flex-shrink-0">
+                <i
+                  [ngClass]="{
+                    'fa fa-envelope text-blue-500': item.type === 'LEAVE_REQUEST',
+                    'fa fa-bullhorn text-green-500': item.type === 'ANNOUNCEMENT',
+                    'fa fa-exclamation-circle text-yellow-500': item.type === 'IMPORTANT'
+                  }"
+                  class="fa-lg"
+                ></i>
+              </div>
+              <div class="flex-1">
+                <div class="text-sm font-semibold text-gray-800">
+                  {{ item.message }}
+                </div>
+                <div class="text-xs text-gray-500">
+                  {{ item.dateSent | date: 'MMM dd, yyyy hh:mm a' }}
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+  
+        <ng-template #noNotifications>
+          <div class="text-center py-6 text-gray-500">No new notifications</div>
+        </ng-template>
+  
+        <div class="bg-gray-100 px-4 py-2 text-center">
+          <button
+            (click)="closeNotificationModal()"
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,33 @@
+<div class="p-6 bg-gray-100 min-h-screen">
+    <h1 class="text-2xl font-bold text-teal-800 mb-4">Admin Event Calendar</h1>
+  
+    <div class="flex space-x-4 mb-6">
+      <select [(ngModel)]="filter.category" class="border rounded p-2 w-40">
+        <option value="">All Categories</option>
+        <option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </option>
+      </select>
+  
+      <select [(ngModel)]="filter.location" class="border rounded p-2 w-40">
+        <option value="">All Locations</option>
+        <option *ngFor="let location of locations" [value]="location">
+          {{ location }}
+        </option>
+      </select>
+  
+      <input
+        type="date"
+        [(ngModel)]="filter.date"
+        class="border rounded p-2 w-40"
+      />
+  
+      <button
+        class="bg-teal-800 text-white px-4 py-2 rounded"
+        (click)="applyFilters()"
+      >
+        Apply Filters
+      </button>
+    </div>
+  </div>
+  

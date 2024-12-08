@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "ngx-toastr/toastr";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.hide-small {
+  display: none; 
+}
+
+@media (min-width: 768px) {
+  .hide-small {
+    display: none; 
+  }
+}
+
+.hide-large {
+  display: block; 
+}
+
+@media (min-width: 768px) {
+  .hide-large {
+    display: none; 
+  }
+}

@@ -1,0 +1,75 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 m-4 mt-10">
+    <div *ngFor="let fieldGroup of fieldDefinitions" class="mb-6">
+      <div *ngIf="fieldGroup.fieldGroupTitle" class="font-bold text-lg mb-2">{{ fieldGroup.fieldGroupTitle }}</div>
+  
+      <div [ngClass]="fieldGroup.fieldsContainerClass">
+        <div *ngFor="let field of fieldGroup.fields" class="mb-4">
+          <label *ngIf="field.label" [for]="field.name" class="block text-sm font-bold mb-2">
+            {{ field.label }}
+          </label>
+  
+          <div *ngIf="field.type === 'text'">
+            <input
+              type="text"
+              [formControlName]="field.name"
+              [placeholder]="field.placeholder"
+              [readonly]="isReadOnly || field.readonly"
+              class="w-full px-3 py-2 bg-gray-200 text-black rounded-sm outline-none"
+            />
+          </div>
+  
+          <div *ngIf="field.type === 'select'">
+            <select
+              [formControlName]="field.name"
+              [disabled]="isReadOnly || field.readonly"
+              class="w-full px-3 py-2 bg-gray-200 text-black rounded-sm outline-none"
+            >
+              <option *ngFor="let option of field.options" [value]="option.value">{{ option.label }}</option>
+            </select>
+          </div>
+  
+          <div *ngIf="field.type === 'searchable-select'">
+            <!-- Implement a searchable select component here -->
+            <!-- <app-searchable-select
+              [options]="field.options"
+              [value]="form.get(field.name)?.value"
+              (onChange)="form.get(field.name)?.setValue($event)"
+              [placeholder]="field.placeholder"
+              [dropdownRef]="dropdownRef"
+            ></app-searchable-select> -->
+          </div>
+  
+          <div *ngIf="field.type === 'checkbox'">
+            <input
+              type="checkbox"
+              [formControlName]="field.name"
+              (change)="customCheckboxHandleChange($event)"
+              class="rounded-sm"
+            />
+          </div>
+  
+          <div *ngIf="field.type === 'password'">
+            <input
+              type="password"
+              [formControlName]="field.name"
+              [placeholder]="field.placeholder"
+              class="w-full px-3 py-2 bg-gray-200 text-black rounded-sm outline-none"
+            />
+          </div>
+  
+          <div *ngIf="form.get(field.name)?.touched && form.get(field.name)?.invalid" class="text-red-600 text-sm mt-1">
+            {{ getErrorMessage(field.name) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="children-container">
+      <ng-content></ng-content>
+    </div>
+  
+    <button type="submit" [disabled]="form.invalid" class="bg-blue-500 text-white px-4 py-2 rounded-lg">
+      Submit
+    </button>
+  </form>
+  
